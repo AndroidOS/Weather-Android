@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -31,6 +33,7 @@ def retrofitVersion = '2.3.0'
 def glideVersion = '4.10.0'
 def rxJavaVersion = '2.1.1'
 def roomVersion = '2.2.1' //
+def navVersion = '2.1.0' //
 def preferenceVersion = '1.1.0'
 
 dependencies {
@@ -66,4 +69,7 @@ dependencies {
     implementation "androidx.preference:preference-ktx:$preferenceVersion"
     implementation "com.android.support:design:$supportVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycleExtensionVersion"
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
 }

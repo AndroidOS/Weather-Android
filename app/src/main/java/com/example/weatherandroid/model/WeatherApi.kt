@@ -5,6 +5,6 @@ import io.reactivex.Single
 import retrofit2.http.GET
 
 interface WeatherApi {
-    @GET("appid=${apiKey}&units=metric&q=Sydney")
+    @GET("weather?appid=${apiKey}&units=metric&q=Sydney")
     fun getWeather(): Single<RootObject>
 }

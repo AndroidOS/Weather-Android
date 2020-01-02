@@ -41,7 +41,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                         //soItems.value = itemList.items
                         if (itemList.main != null) {
 
-                            //fetchFromDatabase()
+                            Log.d(TAG, "$itemList")
                         } else {
                             Toast.makeText(
                                 getApplication(),
