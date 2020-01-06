@@ -20,7 +20,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     private val disposable = CompositeDisposable()
 
 
-    val stackItems = MutableLiveData<List<RootObject>>()
+    val weather = MutableLiveData<RootObject>()
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
@@ -35,13 +35,13 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<RootObject>() {
-                    override fun onSuccess(itemList: RootObject) {
+                    override fun onSuccess(item: RootObject) {
 
 
                         //soItems.value = itemList.items
-                        if (itemList.main != null) {
-
-                            Log.d(TAG, "$itemList")
+                        if (item.main != null) {
+                            weather.value = item
+                            Log.d(TAG, "$item")
                         } else {
                             Toast.makeText(
                                 getApplication(),

@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProviders
 import com.example.weatherandroid.R
 import com.example.weatherandroid.viewmodel.ListViewModel
+import kotlinx.android.synthetic.main.fragment_info.*
 
 
 class InfoFragment : Fragment() {
@@ -32,6 +34,20 @@ class InfoFragment : Fragment() {
         } ?: throw Exception("Invalid Activity")
 
         (viewModel as ListViewModel).refresh()
+
+        observeViewModel()
+
+    }
+
+    fun observeViewModel() {
+        (viewModel as ListViewModel).weather.observe(this, Observer { weather ->
+            weather?.let {
+                txt_temperature.text = "Temperature: " + weather.main?.temp_max.toString()
+                txt_conditions.text = weather.weather?.get(0)?.description.toString()
+            }
+        })
+
+        viewModel
 
     }
 
