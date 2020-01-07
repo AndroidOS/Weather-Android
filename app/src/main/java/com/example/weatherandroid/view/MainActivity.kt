@@ -3,6 +3,7 @@ package com.example.weatherandroid.view
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherandroid.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-
+            dialogueLocation()
         }
     }
 
@@ -33,5 +34,25 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun dialogueLocation() {
+        val builder = AlertDialog.Builder(this@MainActivity)
+
+        val view = this.layoutInflater.inflate(R.layout.dialog_edit_text, null)
+        builder.setTitle("Enter City")
+
+        builder.setView(view)
+
+        builder.setPositiveButton("O.K") { dialog, which ->
+        }
+
+        builder.setNeutralButton("Cancel") { _, _ ->
+        }
+
+        val dialog: AlertDialog = builder.create()
+
+        dialog.show()
+
     }
 }
