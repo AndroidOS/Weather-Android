@@ -22,6 +22,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
 
     val weather = MutableLiveData<RootObject>()
     val loading = MutableLiveData<Boolean>()
+    val city = MutableLiveData<String>()
 
     fun refresh() {
         fetchFromRemote()

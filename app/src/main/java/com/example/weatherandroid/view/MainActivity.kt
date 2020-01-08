@@ -1,19 +1,31 @@
 package com.example.weatherandroid.view
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.example.weatherandroid.R
+import com.example.weatherandroid.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.dialog_edit_text.*
 
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: ListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+
+        viewModel = ViewModelProviders.of(this)[ListViewModel::class.java]
 
         fab.setOnClickListener { view ->
             dialogueLocation()
@@ -45,9 +57,17 @@ class MainActivity : AppCompatActivity() {
         builder.setView(view)
 
         builder.setPositiveButton("O.K") { dialog, which ->
+
+
+            DialogInterface.OnClickListener { dialog, id ->
+                Toast.makeText(this, "${dialog}", Toast.LENGTH_LONG).show()
+                Log.d(TAG, "${txt_city.text}")
+            }
+
         }
 
         builder.setNeutralButton("Cancel") { _, _ ->
+
         }
 
         val dialog: AlertDialog = builder.create()
